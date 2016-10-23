@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Security.AccessControl;
+using System.Reflection;
+using System.Xml;
 
 namespace StreamTimer
 {
@@ -47,6 +49,59 @@ namespace StreamTimer
             time[1] = 0;
             time[0] = 0;
             formatTimes();
+        }
+
+        private void FormMain_Show(object sender, EventArgs e)
+        {
+            Version newVersion = null;
+            string url = "";
+            XmlTextReader reader = null;
+            try
+            {
+                reader = new XmlTextReader("http://duil.io/StreamTimer/version.xml");
+                reader.MoveToContent();
+                string elementName = "";
+                if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == "StreamTimer"))
+                {
+                    while (reader.Read())
+                    {
+                        if (reader.NodeType == XmlNodeType.Element)
+                            elementName = reader.Name;
+                        else
+                        {
+                            if ((reader.NodeType == XmlNodeType.Text) &&
+                                (reader.HasValue))
+                            {
+                                switch (elementName)
+                                {
+                                    case "version":
+                                        newVersion = new Version(reader.Value);
+                                        break;
+                                    case "url":
+                                        url = reader.Value;
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                if (reader != null) reader.Close();
+            }
+
+            Version curVersion = Assembly.GetExecutingAssembly().GetName().Version;
+            if (curVersion.CompareTo(newVersion) < 0)
+            {
+                if (DialogResult.Yes == MessageBox.Show(this, "A new version of StreamTimer is available. Would you like to download it now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                {
+                    System.Diagnostics.Process.Start(url);
+                }
+            }
         }
 
         private void formatTimes()
