@@ -25,7 +25,7 @@ namespace StreamTimer
 
         private void b_about_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Stream timer created by Duilio." + Environment.NewLine + "Version: 1.1.0" + Environment.NewLine + "This program will automatically create a new file called 'timer.txt' in your documents.", "About");
+            MessageBox.Show("Stream timer created by Duilio." + Environment.NewLine + "Version: 1.1.1" + Environment.NewLine + "This program will automatically create a new file called 'timer.txt' in your documents.", "About");
         }
 
         private void cb_showhr_CheckedChanged(object sender, EventArgs e)

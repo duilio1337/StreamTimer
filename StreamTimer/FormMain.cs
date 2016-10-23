@@ -14,7 +14,7 @@ namespace StreamTimer
 {
     public partial class FormMain : Form
     {
-        FormOptions Options = new FormOptions();
+        FormOptions Options;
         private bool countdown = true;
         private bool timechanged = false;
         private bool enabled = true;
@@ -33,6 +33,8 @@ namespace StreamTimer
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.Location = Properties.Settings.Default.MainLocation;
+
             if (TimerSettings.Default.countdown) radiodown.PerformClick();
             else radioup.PerformClick();
 
@@ -260,6 +262,7 @@ namespace StreamTimer
         private void options_Click(object sender, EventArgs e)
         {
             Options = new FormOptions();
+            Options.StartPosition = FormStartPosition.CenterParent;
             Options.ShowDialog();
         }
 
@@ -412,6 +415,8 @@ namespace StreamTimer
                     e.Cancel = true;
                 }
             }
+            Properties.Settings.Default.MainLocation = this.Location;
+            Properties.Settings.Default.Save();
         }
 
         private void hour_Leave(object sender, EventArgs e)
