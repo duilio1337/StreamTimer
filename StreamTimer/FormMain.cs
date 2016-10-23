@@ -18,6 +18,7 @@ namespace StreamTimer
         private bool countdown = true;
         private bool timechanged = false;
         private bool enabled = true;
+        private bool isOT = false;
         private int cddef = 0;
         private int[] time = new int[3] { 0, 0, 0 };
         private int[] lasttime = new int[3] { 1, 0, 0 };
@@ -34,6 +35,9 @@ namespace StreamTimer
         private void Form1_Load(object sender, EventArgs e)
         {
             this.Location = Properties.Settings.Default.MainLocation;
+
+            if (TimerSettings.Default.filePath == "") TimerSettings.Default.filePath = @"C:\Users\" + System.Environment.UserName + @"\Documents\timer.txt";
+            TimerSettings.Default.Save();
 
             if (TimerSettings.Default.countdown) radiodown.PerformClick();
             else radioup.PerformClick();
@@ -67,15 +71,25 @@ namespace StreamTimer
             minute.Text = Convert.ToString(time[1]);
             second.Text = Convert.ToString(time[2]);
             String text = "";
+
+            if(TimerSettings.Default.prefix != "" && !isOT)
+            {
+                text = TimerSettings.Default.prefix + " ";
+            }
+            else if (TimerSettings.Default.otPrefix != "")
+            {
+                text = TimerSettings.Default.otPrefix + " ";
+            }
+
             if (!TimerSettings.Default.hideHrs || time[0] > 0)
             {
                 if (hour.Text.Length < 2)
                 {
-                    text = "0" + hour.Text + ":";
+                    text += "0" + hour.Text + ":";
                 }
                 else
                 {
-                    text = hour.Text + ":";
+                    text += hour.Text + ":";
                 }
             }
             
@@ -96,7 +110,17 @@ namespace StreamTimer
             {
                 text += second.Text;
             }
-            File.WriteAllText(@"C:\Users\" + System.Environment.UserName + @"\Documents\timer.txt", text);
+
+            if (TimerSettings.Default.suffix != "" && !isOT)
+            {
+                text += " " + TimerSettings.Default.suffix;
+            }
+            else if (TimerSettings.Default.otSuffix != "")
+            {
+                text += " " + TimerSettings.Default.otSuffix;
+            }
+
+            File.WriteAllText(TimerSettings.Default.filePath, text);
         }
 
         private void en_off()
@@ -151,10 +175,28 @@ namespace StreamTimer
 
                 if ((time[0] + time[1] + time[2]) < 1)
                 {
-                    timer.Stop();
-                    en_on();
-                    updateBoxes();
-                    MessageBox.Show("The timer has reached 0.", "Timer Ended", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    if (TimerSettings.Default.overtime)
+                    {
+                        updateBoxes();
+                        countdown = false;
+                        isOT = true;
+                        l_alert.Visible = true;
+                        return;
+                    }
+                    if (TimerSettings.Default.nonotify)
+                    {
+                        timer.Stop();
+                        en_on();
+                        updateBoxes();
+                    }
+                    else
+                    {
+                        timer.Stop();
+                        en_on();
+                        updateBoxes();
+                        MessageBox.Show("The timer has reached 0.", "Timer Ended", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    
                 }
             }
             else
@@ -234,6 +276,13 @@ namespace StreamTimer
                 timer.Stop();
                 sw.Stop();
                 en_on();
+
+                if (isOT)
+                {
+                    countdown = true;
+                    isOT = false;
+                    l_alert.Visible = false;
+                }
             }
         }
 
@@ -242,7 +291,7 @@ namespace StreamTimer
             timer.Stop();
             sw.Stop();
             en_on();
-            if (countdown)
+            if (countdown || isOT)
             {
                 time[2] = cddef;
                 time[1] = 0;
@@ -257,6 +306,13 @@ namespace StreamTimer
                 time[2] = 0;
                 updateBoxes();
             }
+
+            if (isOT)
+            {
+                countdown = true;
+                isOT = false;
+                l_alert.Visible = false;
+            }
         }
 
         private void options_Click(object sender, EventArgs e)
@@ -268,7 +324,7 @@ namespace StreamTimer
 
         private void hour_TextChanged(object sender, EventArgs e)
         {
-            if (countdown && enabled)
+            if (countdown && enabled && !isOT)
             {
                 timechanged = true;
             }
@@ -276,7 +332,7 @@ namespace StreamTimer
 
         private void second_TextChanged(object sender, EventArgs e)
         {
-            if (countdown && enabled)
+            if (countdown && enabled && !isOT)
             {
                 timechanged = true;
             }
@@ -284,7 +340,7 @@ namespace StreamTimer
 
         private void minute_TextChanged(object sender, EventArgs e)
         {
-            if (countdown && enabled)
+            if (countdown && enabled && !isOT)
             {
                 timechanged = true;
             }

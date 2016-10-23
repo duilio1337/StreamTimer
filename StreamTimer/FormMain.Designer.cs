@@ -43,6 +43,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.b_options = new System.Windows.Forms.Button();
+            this.l_alert = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_start
@@ -199,12 +200,28 @@
             this.b_options.UseVisualStyleBackColor = true;
             this.b_options.Click += new System.EventHandler(this.options_Click);
             // 
+            // l_alert
+            // 
+            this.l_alert.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.l_alert.AutoSize = true;
+            this.l_alert.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.l_alert.ForeColor = System.Drawing.Color.Red;
+            this.l_alert.Location = new System.Drawing.Point(102, 70);
+            this.l_alert.Name = "l_alert";
+            this.l_alert.Size = new System.Drawing.Size(78, 16);
+            this.l_alert.TabIndex = 12;
+            this.l_alert.Text = "OVERTIME";
+            this.l_alert.Visible = false;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(284, 161);
+            this.Controls.Add(this.l_alert);
             this.Controls.Add(this.b_options);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -244,6 +261,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button b_options;
+        private System.Windows.Forms.Label l_alert;
     }
 }
 

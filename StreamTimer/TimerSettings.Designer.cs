@@ -70,5 +70,89 @@ namespace StreamTimer {
                 this["hideHrs"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string prefix {
+            get {
+                return ((string)(this["prefix"]));
+            }
+            set {
+                this["prefix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string suffix {
+            get {
+                return ((string)(this["suffix"]));
+            }
+            set {
+                this["suffix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool overtime {
+            get {
+                return ((bool)(this["overtime"]));
+            }
+            set {
+                this["overtime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool nonotify {
+            get {
+                return ((bool)(this["nonotify"]));
+            }
+            set {
+                this["nonotify"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string otPrefix {
+            get {
+                return ((string)(this["otPrefix"]));
+            }
+            set {
+                this["otPrefix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string otSuffix {
+            get {
+                return ((string)(this["otSuffix"]));
+            }
+            set {
+                this["otSuffix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string filePath {
+            get {
+                return ((string)(this["filePath"]));
+            }
+            set {
+                this["filePath"] = value;
+            }
+        }
     }
 }
