@@ -1,6 +1,6 @@
 ﻿namespace StreamTimer
 {
-    partial class Form1
+    partial class FormMain
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.btn_start = new System.Windows.Forms.Button();
             this.btn_reset = new System.Windows.Forms.Button();
             this.btn_stop = new System.Windows.Forms.Button();
@@ -42,7 +42,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.about = new System.Windows.Forms.Button();
+            this.b_options = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_start
@@ -80,7 +80,7 @@
             this.radiodown.AutoSize = true;
             this.radiodown.Checked = true;
             this.radiodown.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.radiodown.Location = new System.Drawing.Point(13, 103);
+            this.radiodown.Location = new System.Drawing.Point(13, 100);
             this.radiodown.Name = "radiodown";
             this.radiodown.Size = new System.Drawing.Size(84, 17);
             this.radiodown.TabIndex = 3;
@@ -92,7 +92,7 @@
             // radioup
             // 
             this.radioup.AutoSize = true;
-            this.radioup.Location = new System.Drawing.Point(105, 103);
+            this.radioup.Location = new System.Drawing.Point(105, 100);
             this.radioup.Name = "radioup";
             this.radioup.Size = new System.Drawing.Size(70, 17);
             this.radioup.TabIndex = 4;
@@ -189,23 +189,23 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Seconds";
             // 
-            // about
+            // b_options
             // 
-            this.about.Location = new System.Drawing.Point(197, 97);
-            this.about.Name = "about";
-            this.about.Size = new System.Drawing.Size(75, 23);
-            this.about.TabIndex = 11;
-            this.about.Text = "About";
-            this.about.UseVisualStyleBackColor = true;
-            this.about.Click += new System.EventHandler(this.about_Click);
+            this.b_options.Location = new System.Drawing.Point(197, 97);
+            this.b_options.Name = "b_options";
+            this.b_options.Size = new System.Drawing.Size(75, 23);
+            this.b_options.TabIndex = 11;
+            this.b_options.Text = "Options";
+            this.b_options.UseVisualStyleBackColor = true;
+            this.b_options.Click += new System.EventHandler(this.options_Click);
             // 
-            // Form1
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(284, 161);
-            this.Controls.Add(this.about);
+            this.Controls.Add(this.b_options);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -220,7 +220,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "FormMain";
             this.Text = "Stream Timer by Duilio";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -243,7 +243,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button about;
+        private System.Windows.Forms.Button b_options;
     }
 }
 
