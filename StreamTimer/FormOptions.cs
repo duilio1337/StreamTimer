@@ -31,7 +31,7 @@ namespace StreamTimer
 
         private void b_about_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Stream timer created by Rob 'duilio1337' Harper." + Environment.NewLine + "Version: 1.2.0" + Environment.NewLine + "This program will automatically create a new file called 'timer.txt' in your documents.", "About");
+            MessageBox.Show("Stream timer created by Rob 'duilio1337' Harper." + Environment.NewLine + "Version: 1.2.2" + Environment.NewLine + "This program will automatically create a new file called 'timer.txt' in your documents by default.", "About");
         }
 
         private void cb_showhr_CheckedChanged(object sender, EventArgs e)

@@ -172,7 +172,7 @@
             this.b_file.Name = "b_file";
             this.b_file.Size = new System.Drawing.Size(75, 23);
             this.b_file.TabIndex = 9;
-            this.b_file.Text = "File Name...";
+            this.b_file.Text = "Select File...";
             this.b_file.UseVisualStyleBackColor = true;
             this.b_file.Click += new System.EventHandler(this.b_file_Click);
             // 
@@ -182,6 +182,7 @@
             this.saveFileDialog.FileName = "timer.txt";
             this.saveFileDialog.Filter = "(*.txt)|*.txt";
             this.saveFileDialog.InitialDirectory = "s";
+            this.saveFileDialog.Title = "Select Timer Text File";
             this.saveFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog_FileOk);
             // 
             // FormOptions
@@ -207,6 +208,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormOptions";
+            this.ShowIcon = false;
             this.Text = "Options";
             this.ResumeLayout(false);
             this.PerformLayout();

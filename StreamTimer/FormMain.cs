@@ -23,7 +23,6 @@ namespace StreamTimer
         private bool isOT = false;
         private int cddef = 0;
         private int[] time = new int[3] { 0, 0, 0 };
-        private int[] lasttime = new int[3] { 1, 0, 0 };
         private long swtlast = 0;
 
         System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
@@ -127,7 +126,7 @@ namespace StreamTimer
             second.Text = Convert.ToString(time[2]);
             String text = "";
 
-            if(TimerSettings.Default.prefix != "" && !isOT)
+            if((TimerSettings.Default.prefix != "" && !isOT) || (TimerSettings.Default.otPrefix == "" && isOT))
             {
                 text = TimerSettings.Default.prefix + " ";
             }
@@ -166,7 +165,7 @@ namespace StreamTimer
                 text += second.Text;
             }
 
-            if (TimerSettings.Default.suffix != "" && !isOT)
+            if ((TimerSettings.Default.suffix != "" && !isOT) || (TimerSettings.Default.otSuffix == "" && isOT))
             {
                 text += " " + TimerSettings.Default.suffix;
             }
@@ -304,9 +303,10 @@ namespace StreamTimer
                     if ((time[0] + time[1] + time[2]) > 0)
                     {
                         en_off();
-                        lasttime[0] = time[0];
-                        lasttime[1] = time[1];
-                        lasttime[2] = time[2];
+                        if (isOT)
+                        {
+                            isOT = false;
+                        }
                         timer.Start();
                         swtlast = 0;
                         sw.Reset();
@@ -335,7 +335,6 @@ namespace StreamTimer
                 if (isOT)
                 {
                     countdown = true;
-                    isOT = false;
                     l_alert.Visible = false;
                 }
             }
@@ -346,7 +345,7 @@ namespace StreamTimer
             timer.Stop();
             sw.Stop();
             en_on();
-            if (countdown || isOT)
+            if (countdown)
             {
                 time[2] = cddef;
                 time[1] = 0;
